@@ -1,19 +1,20 @@
 alerts:
-  - name: TODO_alert_1
-    severity: TODO
-    condition: TODO
+  - name: HighLatencyP95
+    severity: warning
+    condition: p95(latency_ms) > 3000ms for 5m
     type: symptom-based
-    owner: TODO
-    runbook: docs/alerts.md#alert-1
-  - name: TODO_alert_2
-    severity: TODO
-    condition: TODO
+    owner: "@devops-oncall"
+    runbook: docs/alerts.md#alert-1-highlatencyp95
+  - name: HighErrorRate
+    severity: critical
+    condition: error_rate_pct > 2% for 5m
     type: symptom-based
-    owner: TODO
-    runbook: docs/alerts.md#alert-2
-  - name: TODO_alert_3
-    severity: TODO
-    condition: TODO
+    owner: "@devops-oncall"
+    runbook: docs/alerts.md#alert-2-higherrorrate
+  - name: LowQualityScore
+    severity: warning
+    condition: mean(quality_score) < 0.75 for 15m
     type: symptom-based
-    owner: TODO
-    runbook: docs/alerts.md#alert-3
+    owner: "@ai-team"
+    runbook: docs/alerts.md#alert-3-lowqualityscore
+
