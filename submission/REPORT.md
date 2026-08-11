@@ -4,11 +4,11 @@
 
 - Tên nhóm: Group Observability
 - Repository URL: https://github.com/hoanglmv/Day13-K4-Observability
-- Commit SHA cuối: 5ba6472
+- Commit SHA cuối: 157bc91
 - Thành viên và vai trò:
-  - Thành viên 1: Logging, correlation ID và PII (`app/logging_config.py`, `app/middleware.py`, `app/main.py`, `app/pii.py`)
-  - Thành viên 2: Tracing và Prompt Versioning (`app/tracing.py`, `app/prompt_management.py`, `app/agent.py`, Langfuse)
-  - Thành viên 3: Dashboard, SLO, Alert và tổng hợp báo cáo (`config/dashboard.yaml`, `config/slo.yaml`, `config/alert_rules.yaml`, `docs/alerts.md`, `submission/REPORT.md`)
+  - Thành viên 1 - Vũ Ngọc Hùng (2A202601722): Logging, correlation ID và PII (`app/logging_config.py`, `app/middleware.py`, `app/main.py`, `app/pii.py`)
+  - Thành viên 2 - Nguyễn Đăng Tuyên (2A202601622): Tracing và Prompt Versioning (`app/tracing.py`, `app/prompt_management.py`, `app/agent.py`, Langfuse)
+  - Thành viên 3 - Lê Mai Việt Hoàng (2A202601230): Dashboard, SLO, Alert và tổng hợp báo cáo (`config/dashboard.yaml`, `config/slo.yaml`, `config/alert_rules.yaml`, `docs/alerts.md`, `submission/REPORT.md`)
 
 ## 2. Kết quả kỹ thuật
 
@@ -63,7 +63,8 @@
 
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
-| Thành viên 1 | Logging, correlation ID & PII redaction | Commit trên branch `hoanglmv` | Cách cấu hình structlog dạng JSON, truyền correlation ID qua FastAPI middleware và che thông tin nhạy cảm (PII) bằng regex. |
-| Thành viên 2 | Tracing & Prompt Versioning | Commit trên branch `hoanglmv` | Cách tích hợp Langfuse Tracing SDK, gắn metadata vào trace và quản lý/rollback prompt version linh hoạt với label. |
-| Thành viên 3 | Dashboard, SLO, Alert Rules, Runbook & Báo cáo tổng hợp | Commit trên branch `hoanglmv` | Cách thiết kế Dashboard 6 nhóm chỉ số, định nghĩa SLO/SLI chuẩn, viết Alert Rules theo triệu chứng (symptom-based) và quy trình điều tra vết sự cố theo luồng Metrics → Traces → Logs. |
+| Vũ Ngọc Hùng (2A202601722) | Logging, correlation ID & PII redaction | Commit trên branch `hoanglmv` | Cách cấu hình structlog dạng JSON, truyền correlation ID qua FastAPI middleware và che thông tin nhạy cảm (PII) bằng regex. |
+| Nguyễn Đăng Tuyên (2A202601622) | Tracing & Prompt Versioning | Commit trên branch `hoanglmv` | Cách tích hợp Langfuse Tracing SDK, gắn metadata vào trace và quản lý/rollback prompt version linh hoạt với label. |
+| Lê Mai Việt Hoàng (2A202601230) | Dashboard, SLO, Alert Rules, Runbook & Báo cáo tổng hợp | Commit trên branch `hoanglmv` | Cách thiết kế Dashboard 6 nhóm chỉ số, định nghĩa SLO/SLI chuẩn, viết Alert Rules theo triệu chứng (symptom-based) và quy trình điều tra vết sự cố theo luồng Metrics → Traces → Logs. |
+
 
