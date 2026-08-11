@@ -6,8 +6,8 @@
 - Repository URL: https://github.com/hoanglmv/Day13-K4-Observability
 - Commit SHA cuối: 157bc91
 - Thành viên và vai trò:
-  - Thành viên 1 - Vũ Ngọc Hùng (2A202601722): Logging, correlation ID và PII (`app/logging_config.py`, `app/middleware.py`, `app/main.py`, `app/pii.py`)
-  - Thành viên 2 - Nguyễn Đăng Tuyên (2A202601622): Tracing và Prompt Versioning (`app/tracing.py`, `app/prompt_management.py`, `app/agent.py`, Langfuse)
+  - Thành viên 2 - Nguyễn Đăng Tuyên (2A202601622)Thành viên 1 - Vũ Ngọc Hùng (2A202601722): Logging, correlation ID và PII (`app/logging_config.py`, `app/middleware.py`, `app/main.py`, `app/pii.py`)
+  - Thành viên 1 - Vũ Ngọc Hùng (2A202601722): Tracing và Prompt Versioning (`app/tracing.py`, `app/prompt_management.py`, `app/agent.py`, Langfuse)
   - Thành viên 3 - Lê Mai Việt Hoàng (2A202601230): Dashboard, SLO, Alert và tổng hợp báo cáo (`config/dashboard.yaml`, `config/slo.yaml`, `config/alert_rules.yaml`, `docs/alerts.md`, `submission/REPORT.md`)
 
 ## 2. Kết quả kỹ thuật
