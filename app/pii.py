@@ -12,13 +12,11 @@ PII_PATTERNS: dict[str, str] = {
     "address_vn": r"(?i)\b(?:địa\s*chỉ|dia\s*chi)\s*[:#-]\s*[^,;\n]{3,100}",
 }
 
-
 def scrub_text(text: str) -> str:
     safe = text
     for name, pattern in PII_PATTERNS.items():
         safe = re.sub(pattern, f"[REDACTED_{name.upper()}]", safe)
     return safe
-
 
 def summarize_text(text: str, max_len: int = 80) -> str:
     safe = scrub_text(text).strip().replace("\n", " ")
