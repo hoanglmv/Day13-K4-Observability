@@ -8,6 +8,7 @@ from typing import Any
 DEFAULT_PROMPT_TEMPLATE = "Feature={{feature}}\nDocs={{docs}}\nQuestion={{message}}"
 
 
+
 @dataclass(frozen=True)
 class ResolvedPrompt:
     text: str
