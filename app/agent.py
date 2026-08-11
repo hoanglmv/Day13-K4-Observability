@@ -81,6 +81,8 @@ class LabAgent:
             cost_details={"total": cost_usd},
             prompt=prompt.managed_prompt,
         )
+        if hasattr(langfuse_client, "flush"):
+            langfuse_client.flush()
 
         metrics.record_request(
             latency_ms=latency_ms,

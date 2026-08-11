@@ -42,9 +42,10 @@ class FallbackReturningPromptClient:
         return FallbackManagedPrompt()
 
 
-def test_local_prompt_fallback_keeps_lab_runnable_without_langfuse() -> None:
+def test_local_prompt_fallback_keeps_lab_runnable_without_langfuse(monkeypatch) -> None:
     from app.prompt_management import resolve_prompt
 
+    monkeypatch.delenv("LANGFUSE_PROMPT_LABEL", raising=False)
     resolved = resolve_prompt(
         UnexpectedPromptClient(),
         feature="qa",
