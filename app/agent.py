@@ -11,6 +11,7 @@ from .prompt_management import resolve_prompt
 from .tracing import get_langfuse_client, observe, tracing_enabled
 
 
+
 @dataclass
 class AgentResult:
     answer: str
