@@ -15,6 +15,9 @@ from .pii import hash_user_id, summarize_text
 from .schemas import ChatRequest, ChatResponse
 from .tracing import tracing_enabled
 
+from dotenv import load_dotenv
+
+load_dotenv()
 configure_logging()
 log = get_logger()
 app = FastAPI(title="Day 13 Observability Lab")

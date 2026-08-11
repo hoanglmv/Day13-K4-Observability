@@ -51,13 +51,13 @@
 
 ## 6. Điều tra challenge
 
-- Challenge ID: `challenge-day13`
-- Triệu chứng từ metrics: Latency P95 tăng đột biến vượt 3000ms, Error rate có dấu hiệu gia tăng.
-- Trace ID liên quan: Trace ID ghi nhận span duration bị kéo dài bất thường ở bước `rag_retrieval` / `llm_call`.
-- Log line/correlation ID liên quan: JSON log theo `correlation_id` cho thấy dấu hiệu timeout kết nối downstream dịch vụ.
-- Root cause: Cổ chai truy xuất dữ liệu RAG (RAG retrieval bottleneck) hoặc candidate prompt làm sinh quá nhiều token làm tăng latency.
-- Fix action: Rollback prompt label `production` về version v1 ổn định và tạm thời tắt/giảm tải nguồn retrieval bị nghẽn.
-- Preventive measure: Bổ sung circuit breaker, thiết lập timeout chuẩn cho RAG span và thiết lập cache kết quả cho các câu hỏi thường gặp.
+- Challenge ID: `day13-k4-observability-v1`
+- Triệu chứng từ metrics: Latency P95 tăng đột biến vượt ngưỡng 2000ms (đạt ~2651ms) đối với feature `monitoring` trong quá trình load test challenge.
+- Trace ID liên quan: Trace ID `req-abc99f97` (Langfuse trace ghi nhận span `rag_retrieval` bị nghẽn kéo dài 2500ms).
+- Log line/correlation ID liên quan: `correlation_id`: `req-abc99f97` | Log line: `{"service": "api", "latency_ms": 2651, "tokens_in": 45, "tokens_out": 162, "cost_usd": 0.002565, "quality_score": 0.9, "payload": {"answer_preview": "Starter answer..."}, "event": "response_sent", "user_id_hash": "6b83e74c0874", "env": "dev", "model": "claude-sonnet-4-5", "correlation_id": "req-abc99f97", "feature": "monitoring", "session_id": "k4-challenge-s04", "level": "info", "ts": "2026-08-11T10:19:06.556730Z"}`
+- Root cause: Cổ chai truy xuất dữ liệu RAG (`rag_slow` incident injection trong `app/mock_rag.py` làm tăng độ trễ 2500ms ở bước `rag_retrieval` cho các query thuộc feature `monitoring`).
+- Fix action: Tắt incident `rag_slow` qua endpoint `/incidents/rag_slow/disable` (chạy `python scripts/inject_incident.py --disable`), đưa độ trễ span `rag_retrieval` trở lại mức bình thường (<10ms).
+- Preventive measure: Bổ sung Circuit Breaker cho RAG retrieval, thiết lập timeout tối đa cho span `rag_retrieval` (ví dụ 1000ms), áp dụng caching kết quả retrieval cho các truy vấn phổ biến và kích hoạt Alert Rule `HighLatencyP95` khi P95 latency vượt ngưỡng 2000ms.
 
 ## 7. Đóng góp cá nhân
 
