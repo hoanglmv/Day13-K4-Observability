@@ -9,6 +9,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from structlog.contextvars import bind_contextvars, clear_contextvars
 
 
+
 class CorrelationIdMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         clear_contextvars()
