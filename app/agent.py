@@ -28,9 +28,15 @@ class LabAgent:
 
     @observe(as_type="generation", capture_input=False, capture_output=False)
     def run(self, user_id: str, feature: str, session_id: str, message: str) -> AgentResult:
+        """
+        Thành viên 2 - Tracing & Prompt Versioning Integration:
+        Thực thi agent, tự động gắn trace metadata, prompt version và generation log vào Langfuse.
+        """
         started = time.perf_counter()
         docs = retrieve(message)
         langfuse_client = get_langfuse_client()
+
+        # Giải mã và biên dịch prompt (Thành viên 2)
         prompt = resolve_prompt(
             langfuse_client,
             feature=feature,
@@ -43,6 +49,7 @@ class LabAgent:
         latency_ms = int((time.perf_counter() - started) * 1000)
         cost_usd = self._estimate_cost(response.usage.input_tokens, response.usage.output_tokens)
 
+        # Cập nhật thông tin Trace lên Langfuse (Thành viên 2)
         langfuse_client.update_current_trace(
             user_id=hash_user_id(user_id),
             session_id=session_id,
@@ -54,6 +61,8 @@ class LabAgent:
                 "prompt_source": prompt.source,
             },
         )
+
+        # Cập nhật chi tiết Generation (Token, Cost, Prompt Version) lên Langfuse (Thành viên 2)
         langfuse_client.update_current_generation(
             model=self.model,
             metadata={
